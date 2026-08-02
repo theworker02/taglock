@@ -6,6 +6,11 @@ All notable changes to TagLock will be documented here.
 
 ### Added
 
+- Original TagLock logo and a responsive, dependency-free GitHub Pages site.
+- Official Pages deployment workflow using a least-privilege deployment token.
+- Contribution, support, conduct, governance, development, compatibility,
+  release, troubleshooting, and Pages documentation.
+- Structured GitHub bug, feature, and pull-request templates.
 - Release-history-backed deprecation windows and explicit replacement rename
   confirmation.
 - Validated generic instantiations for generated runtime verification tests.

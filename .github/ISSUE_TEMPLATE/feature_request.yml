@@ -1,0 +1,61 @@
+name: Feature or rule proposal
+description: Propose a focused TagLock capability, rule, or compatibility policy.
+title: "proposal: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the concrete contract failure or workflow gap. Explain why existing rules or commands do not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Source example
+      description: Show a minimal Go contract and its expected externally observable behavior.
+      render: go
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe diagnostics, certainty, severity, output, configuration, or CLI behavior as applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: false_positives
+    attributes:
+      label: False-positive boundary
+      description: When should TagLock deliberately remain silent or report the result as unknown?
+    validations:
+      required: true
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      options:
+        - No public compatibility impact
+        - Adds a new rule or diagnostic
+        - Changes rule behavior
+        - Changes CLI or configuration
+        - Changes snapshot or machine-output format
+        - Changes the public analyzer API
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and documentation.
+          required: true
+        - label: The proposal does not require TagLock to guess arbitrary runtime behavior.
+          required: true
+

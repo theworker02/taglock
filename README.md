@@ -4,6 +4,13 @@
 
 # TagLock
 
+<p align="center">
+  <a href="https://magnexis.github.io/taglock/">Website</a> ·
+  <a href="docs/RULES.md">Rules</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a> ·
+  <a href="SECURITY.md">Security</a>
+</p>
+
 **Compile-time confidence for Go's runtime metadata — and compatibility
 intelligence for the contracts that metadata creates.**
 
@@ -223,6 +230,20 @@ go build ./cmd/taglock
 go run ./cmd/taglock check ./...
 go test -bench . ./...
 ```
+
+## Project documentation
+
+- [Architecture](ARCHITECTURE.md)
+- [Contribution guide](CONTRIBUTING.md)
+- [Development guide](docs/DEVELOPMENT.md)
+- [Compatibility policy](docs/COMPATIBILITY.md)
+- [Security policy](SECURITY.md)
+- [Support](SUPPORT.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
+- [Governance](GOVERNANCE.md)
+- [Release checklist](docs/RELEASING.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [GitHub Pages setup](docs/GITHUB_PAGES.md)
 
 Known limitations are documented in [SECURITY.md](SECURITY.md) and
 [docs/SNAPSHOT_FORMAT.md](docs/SNAPSHOT_FORMAT.md). Reproducible performance

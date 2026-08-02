@@ -1,0 +1,88 @@
+name: Bug report
+description: Report a reproducible TagLock defect or false diagnostic.
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the report. Remove secrets, private source, runtime values, and credentials. Use private vulnerability reporting for security issues.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Minimal reproducer
+      description: Provide the smallest Go source and redacted TagLock configuration that reproduce the behavior.
+      render: go
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output
+      description: Include the exact command, output format, exit code, and complete redacted diagnostic or error.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: taglock_version
+    attributes:
+      label: TagLock version or revision
+      placeholder: v0.x.y or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: go_version
+    attributes:
+      label: Go version
+      placeholder: go version go1.26.3 windows/amd64
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and architecture
+      placeholder: Windows 11 amd64, Ubuntu 24.04 amd64, macOS arm64
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Analyzer diagnostic
+        - Suggested fix
+        - CLI or exit code
+        - Configuration
+        - Snapshot or baseline
+        - Evolution comparison
+        - JSON migration
+        - Schema or manifest
+        - Git comparison
+        - Runtime verification
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Include build tags, workspace/vendor use, semantic profile, and whether the behavior is deterministic.
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues for this problem.
+          required: true
+        - label: I removed secrets, private source, and production data.
+          required: true
+        - label: This is not a vulnerability requiring private disclosure.
+          required: true
+
