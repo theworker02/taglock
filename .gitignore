@@ -1,0 +1,5 @@
+/.cache/
+/taglock
+/taglock.exe
+*.test
+coverage.out

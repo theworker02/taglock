@@ -1,0 +1,60 @@
+version: 1
+
+severity:
+  TAG301: warning
+  TAG401: error
+
+namespaces:
+  json:
+    enabled: true
+    naming: snake_case
+    require_explicit_tags: true
+  yaml:
+    enabled: true
+    naming: snake_case
+  xml:
+    enabled: true
+  db:
+    enabled: true
+    naming: snake_case
+    known_options: [primary, unique, readonly]
+
+json:
+  semantics: both
+  supported_profiles: [json/v1, json/v2]
+  compare_profiles: true
+  migration_check: true
+
+contracts:
+  visibility: [exported]
+  default_level: public
+  annotations:
+    enabled: true
+
+compatibility:
+  default_mode: bidirectional
+  fail_on: [breaking, unknown]
+
+evolution:
+  require_deprecation_before_removal: true
+  minimum_deprecation_releases: 2
+  approvals_file: .taglock/changes.yml
+  release_history: [1.4.0, 1.5.0, 2.0.0]
+
+snapshot:
+  output: .taglock/contracts.json
+  reproducible: true
+
+schema:
+  enabled: true
+  format: json-schema
+  output: schemas/contracts.json
+  check_drift: true
+
+verification:
+  enabled: false
+  fixtures_directory: testdata/contracts
+  fixtures:
+    example/api.Page:
+      file: testdata/contracts/page.json
+      type_arguments: [string]

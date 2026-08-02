@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "taglock://example/api",
+  "x-taglock-format-version": 1,
+  "x-taglock-profiles": [
+    "json/v1"
+  ],
+  "$defs": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "request_id"
+      ],
+      "additionalProperties": false,
+      "x-taglock-certainty": "exact",
+      "x-taglock-profile": "json/v1"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ["1.24.x", "1.25.x", "1.26.x"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Check formatting
+        run: test -z "$(gofmt -l .)"
+      - name: Test
+        run: go test ./...
+      - name: Race detector
+        if: matrix.go == '1.26.x'
+        run: go test -race ./...
+      - name: Vet
+        run: go vet ./...
+      - name: Build CLI
+        run: go build ./cmd/taglock
+      - name: Analyze TagLock
+        if: matrix.go == '1.26.x'
+        run: go run ./cmd/taglock check --format sarif ./... > taglock.sarif
+      - name: JSON v2 differential tests
+        if: matrix.go == '1.26.x'
+        env:
+          GOEXPERIMENT: jsonv2
+        run: go test ./semantics
+      - name: Upload SARIF
+        if: always() && matrix.go == '1.26.x' && hashFiles('taglock.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: taglock.sarif

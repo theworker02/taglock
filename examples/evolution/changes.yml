@@ -1,0 +1,10 @@
+version: 1
+changes:
+  - id: remove-legacy-email
+    rule: EVOL002
+    contract: example/api.User
+    field: Email
+    approved_for: 2.0.0
+    reason: The API completed its documented email-field deprecation window.
+    migration: Consumers must use the replacement contact_email field.
+    expires: 2027-01-01
