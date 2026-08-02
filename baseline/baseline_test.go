@@ -3,9 +3,9 @@ package baseline_test
 import (
 	"testing"
 
-	"github.com/magnexis/taglock/baseline"
-	"github.com/magnexis/taglock/rule"
-	"github.com/magnexis/taglock/rules"
+	"github.com/theworker02/taglock/baseline"
+	"github.com/theworker02/taglock/rule"
+	"github.com/theworker02/taglock/rules"
 )
 
 func TestFingerprintIgnoresPositionsAndIsStable(t *testing.T) {

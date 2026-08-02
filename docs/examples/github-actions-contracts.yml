@@ -18,7 +18,7 @@ jobs:
         with:
           go-version-file: go.mod
       - name: Install TagLock
-        run: go install github.com/magnexis/taglock/cmd/taglock@latest
+        run: go install github.com/theworker02/taglock/cmd/taglock@latest
       - name: Compare contracts
         run: >-
           taglock compare

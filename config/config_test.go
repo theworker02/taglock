@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/config"
+	"github.com/theworker02/taglock/config"
 )
 
 func TestDecodeOverlaysDefaults(t *testing.T) {

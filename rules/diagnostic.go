@@ -3,9 +3,9 @@ package rules
 import (
 	"go/token"
 
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/fix"
-	"github.com/magnexis/taglock/rule"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/fix"
+	"github.com/theworker02/taglock/rule"
 )
 
 // Location points to another declaration participating in a finding.

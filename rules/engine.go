@@ -9,11 +9,11 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/fix"
-	"github.com/magnexis/taglock/rule"
-	"github.com/magnexis/taglock/tag"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/fix"
+	"github.com/theworker02/taglock/rule"
+	"github.com/theworker02/taglock/tag"
 )
 
 // Evaluate runs the complete registry against one normalized contract.

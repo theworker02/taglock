@@ -21,7 +21,7 @@ Please read the [code of conduct](CODE_OF_CONDUCT.md) and
 TagLock requires Go 1.24 or newer and Git for revision-comparison tests.
 
 ```sh
-git clone https://github.com/magnexis/taglock.git
+git clone https://github.com/theworker02/taglock.git
 cd taglock
 go test ./...
 go vet ./...

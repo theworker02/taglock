@@ -3,8 +3,8 @@ package analyzer_test
 import (
 	"testing"
 
-	"github.com/magnexis/taglock/analyzer"
-	"github.com/magnexis/taglock/config"
+	"github.com/theworker02/taglock/analyzer"
+	"github.com/theworker02/taglock/config"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

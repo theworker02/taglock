@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/namespace"
-	"github.com/magnexis/taglock/rule"
-	"github.com/magnexis/taglock/tag"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/namespace"
+	"github.com/theworker02/taglock/rule"
+	"github.com/theworker02/taglock/tag"
 )
 
 // BuildPackage parses every struct declaration once and resolves all surfaces.

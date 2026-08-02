@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/output"
-	"github.com/magnexis/taglock/rule"
-	"github.com/magnexis/taglock/rules"
+	"github.com/theworker02/taglock/output"
+	"github.com/theworker02/taglock/rule"
+	"github.com/theworker02/taglock/rules"
 )
 
 func testDiagnostic() (*token.FileSet, []rules.Diagnostic) {

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/semantics"
+	"github.com/theworker02/taglock/semantics"
 )
 
 func TestJSONV2ExperimentAvailable(t *testing.T) {

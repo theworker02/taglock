@@ -3,7 +3,7 @@ package rules_test
 import (
 	"testing"
 
-	"github.com/magnexis/taglock/rules"
+	"github.com/theworker02/taglock/rules"
 )
 
 func TestConvertName(t *testing.T) {

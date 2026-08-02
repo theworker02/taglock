@@ -4,7 +4,7 @@ package fix
 import (
 	"go/token"
 
-	"github.com/magnexis/taglock/rule"
+	"github.com/theworker02/taglock/rule"
 )
 
 // Edit replaces one precise source range.

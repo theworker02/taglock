@@ -9,8 +9,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/semantics"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/semantics"
 )
 
 type Category string

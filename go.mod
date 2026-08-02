@@ -1,4 +1,4 @@
-module github.com/magnexis/taglock
+module github.com/theworker02/taglock
 
 go 1.24.0
 

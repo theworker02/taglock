@@ -7,9 +7,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/evolution"
-	"github.com/magnexis/taglock/migration"
-	"github.com/magnexis/taglock/rule"
+	"github.com/theworker02/taglock/evolution"
+	"github.com/theworker02/taglock/migration"
+	"github.com/theworker02/taglock/rule"
 )
 
 func main() {

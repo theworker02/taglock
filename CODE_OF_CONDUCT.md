@@ -22,7 +22,7 @@ reporting channels, or retaliation against someone raising a concern.
 
 This policy applies in repository issues, pull requests, reviews, discussions,
 community spaces, and private project communication. It also applies when a
-participant publicly represents TagLock or Magnexis.
+participant publicly represents TagLock or theworker02.
 
 ## Reporting and enforcement
 

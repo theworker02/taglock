@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/internal/cli"
+	"github.com/theworker02/taglock/internal/cli"
 )
 
 func TestExitCodes(t *testing.T) {
@@ -57,5 +57,18 @@ func TestRulesAndExplainShareCatalog(t *testing.T) {
 	}
 	if !strings.Contains(rulesOut.String(), "TAG401") || !strings.Contains(explainOut.String(), "Sensitive field exposed") {
 		t.Fatal("catalog output drifted")
+	}
+}
+
+func TestVersionCommand(t *testing.T) {
+	var out, errOut bytes.Buffer
+	if code := cli.Run([]string{"version"}, &out, &errOut); code != cli.ExitOK {
+		t.Fatalf("version code=%d err=%s", code, errOut.String())
+	}
+	if strings.TrimSpace(out.String()) == "" {
+		t.Fatal("version output is empty")
+	}
+	if code := cli.Run([]string{"version", "extra"}, &out, &errOut); code != cli.ExitUsage {
+		t.Fatalf("version with arguments code=%d, want %d", code, cli.ExitUsage)
 	}
 }

@@ -9,10 +9,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/namespace"
-	"github.com/magnexis/taglock/rules"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/namespace"
+	"github.com/theworker02/taglock/rules"
 	"golang.org/x/tools/go/packages"
 )
 

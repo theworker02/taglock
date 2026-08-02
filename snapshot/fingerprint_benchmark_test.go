@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/magnexis/taglock/semantics"
+	"github.com/theworker02/taglock/semantics"
 )
 
 func BenchmarkContractFingerprint(b *testing.B) {

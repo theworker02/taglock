@@ -13,7 +13,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/rule"
+	"github.com/theworker02/taglock/rule"
 	"golang.org/x/mod/semver"
 	"gopkg.in/yaml.v3"
 )

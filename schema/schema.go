@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/magnexis/taglock/semantics"
-	"github.com/magnexis/taglock/snapshot"
+	"github.com/theworker02/taglock/semantics"
+	"github.com/theworker02/taglock/snapshot"
 )
 
 type Options struct {

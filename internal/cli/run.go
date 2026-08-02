@@ -17,20 +17,21 @@ import (
 	"strings"
 	"time"
 
-	"github.com/magnexis/taglock/baseline"
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/engine"
-	"github.com/magnexis/taglock/evolution"
-	"github.com/magnexis/taglock/gitdiff"
-	"github.com/magnexis/taglock/manifest"
-	"github.com/magnexis/taglock/migration"
-	"github.com/magnexis/taglock/output"
-	"github.com/magnexis/taglock/rule"
-	"github.com/magnexis/taglock/rules"
-	"github.com/magnexis/taglock/schema"
-	"github.com/magnexis/taglock/semantics"
-	"github.com/magnexis/taglock/snapshot"
-	"github.com/magnexis/taglock/verify"
+	"github.com/theworker02/taglock/baseline"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/engine"
+	"github.com/theworker02/taglock/evolution"
+	"github.com/theworker02/taglock/gitdiff"
+	"github.com/theworker02/taglock/internal/version"
+	"github.com/theworker02/taglock/manifest"
+	"github.com/theworker02/taglock/migration"
+	"github.com/theworker02/taglock/output"
+	"github.com/theworker02/taglock/rule"
+	"github.com/theworker02/taglock/rules"
+	"github.com/theworker02/taglock/schema"
+	"github.com/theworker02/taglock/semantics"
+	"github.com/theworker02/taglock/snapshot"
+	"github.com/theworker02/taglock/verify"
 )
 
 const (
@@ -76,6 +77,13 @@ func Run(arguments []string, stdout, stderr io.Writer) int {
 		return runVerify(rest, stdout, stderr)
 	case "changes":
 		return runChanges(rest, stdout, stderr)
+	case "version":
+		if len(rest) != 0 {
+			fmt.Fprintln(stderr, "taglock: version does not accept arguments")
+			return ExitUsage
+		}
+		fmt.Fprintln(stdout, version.Current())
+		return ExitOK
 	case "help", "-h", "--help":
 		writeUsage(stdout)
 		return ExitOK
@@ -903,7 +911,7 @@ func newFlagSet(name string, stderr io.Writer) *flag.FlagSet {
 }
 func writeUsage(writer io.Writer) {
 	fmt.Fprintln(writer, "TagLock — compile-time confidence for Go's runtime metadata")
-	fmt.Fprintln(writer, "\nUsage:\n  taglock check [flags] [packages]\n  taglock fix [flags] [packages]\n  taglock snapshot [flags] [packages]\n  taglock compare <base.json> <head.json>\n  taglock compare --base REV --head REV [packages]\n  taglock migrate json-v2 [packages]\n  taglock manifest <package|module> [packages]\n  taglock schema [check] [packages]\n  taglock verify <generate|run> [packages]\n  taglock changes validate\n  taglock rules\n  taglock explain <rule-id>\n  taglock init\n  taglock config <validate|print>\n  taglock baseline <create|update> [packages]")
+	fmt.Fprintln(writer, "\nUsage:\n  taglock check [flags] [packages]\n  taglock fix [flags] [packages]\n  taglock snapshot [flags] [packages]\n  taglock compare <base.json> <head.json>\n  taglock compare --base REV --head REV [packages]\n  taglock migrate json-v2 [packages]\n  taglock manifest <package|module> [packages]\n  taglock schema [check] [packages]\n  taglock verify <generate|run> [packages]\n  taglock changes validate\n  taglock rules\n  taglock explain <rule-id>\n  taglock init\n  taglock config <validate|print>\n  taglock baseline <create|update> [packages]\n  taglock version")
 }
 
 // MarshalDiagnostics is retained for small CLI integration helpers.

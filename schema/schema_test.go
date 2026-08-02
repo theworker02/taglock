@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/schema"
-	"github.com/magnexis/taglock/semantics"
-	"github.com/magnexis/taglock/snapshot"
+	"github.com/theworker02/taglock/schema"
+	"github.com/theworker02/taglock/semantics"
+	"github.com/theworker02/taglock/snapshot"
 )
 
 func sample() snapshot.Snapshot {

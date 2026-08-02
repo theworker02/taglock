@@ -6,8 +6,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/tag"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/tag"
 )
 
 type jsonV1 struct{ toolchain string }

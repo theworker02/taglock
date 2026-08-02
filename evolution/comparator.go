@@ -5,8 +5,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/snapshot"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/snapshot"
 	"golang.org/x/mod/semver"
 )
 

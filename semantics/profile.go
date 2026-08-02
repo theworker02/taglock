@@ -4,7 +4,7 @@ package semantics
 import (
 	"go/types"
 
-	"github.com/magnexis/taglock/contract"
+	"github.com/theworker02/taglock/contract"
 )
 
 type ContractCertainty string

@@ -5,7 +5,7 @@
 # TagLock
 
 <p align="center">
-  <a href="https://magnexis.github.io/taglock/">Website</a> ·
+  <a href="https://theworker02.github.io/taglock/">Website</a> ·
   <a href="docs/RULES.md">Rules</a> ·
   <a href="CONTRIBUTING.md">Contributing</a> ·
   <a href="SECURITY.md">Security</a>
@@ -27,7 +27,7 @@ schema, or comparison commands.
 TagLock requires Go 1.24 or newer.
 
 ```sh
-go install github.com/magnexis/taglock/cmd/taglock@latest
+go install github.com/theworker02/taglock/cmd/taglock@latest
 ```
 
 ## Source-contract analysis
@@ -208,7 +208,7 @@ and the [JSON API evolution tutorial](docs/tutorials/protecting-a-json-api.md).
 package main
 
 import (
-    "github.com/magnexis/taglock/analyzer"
+    "github.com/theworker02/taglock/analyzer"
     "golang.org/x/tools/go/analysis/singlechecker"
 )
 
@@ -244,6 +244,10 @@ go test -bench . ./...
 - [Release checklist](docs/RELEASING.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [GitHub Pages setup](docs/GITHUB_PAGES.md)
+
+## License
+
+TagLock is available under the [MIT License](LICENSE).
 
 Known limitations are documented in [SECURITY.md](SECURITY.md) and
 [docs/SNAPSHOT_FORMAT.md](docs/SNAPSHOT_FORMAT.md). Reproducible performance

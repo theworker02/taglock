@@ -11,7 +11,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/magnexis/taglock/rules"
+	"github.com/theworker02/taglock/rules"
 )
 
 const Version = 1

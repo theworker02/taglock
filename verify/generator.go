@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/engine"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/engine"
 )
 
 const generatedName = "taglock_contract_verify_test.go"

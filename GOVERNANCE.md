@@ -1,6 +1,6 @@
 # Governance
 
-TagLock is maintained by Magnexis as an independent open-source project.
+TagLock is maintained by theworker02 as an independent open-source project.
 
 ## Decision making
 

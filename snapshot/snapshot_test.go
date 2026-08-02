@@ -7,10 +7,10 @@ import (
 	"go/types"
 	"testing"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/engine"
-	"github.com/magnexis/taglock/snapshot"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/engine"
+	"github.com/theworker02/taglock/snapshot"
 )
 
 func TestCanonicalIgnoresGeneratedTimestamp(t *testing.T) {

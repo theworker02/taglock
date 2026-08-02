@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/evolution"
-	"github.com/magnexis/taglock/semantics"
-	"github.com/magnexis/taglock/snapshot"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/evolution"
+	"github.com/theworker02/taglock/semantics"
+	"github.com/theworker02/taglock/snapshot"
 )
 
 func document(field snapshot.FieldSnapshot) snapshot.Snapshot {

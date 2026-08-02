@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/engine"
-	"github.com/magnexis/taglock/namespace"
-	"github.com/magnexis/taglock/verify"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/engine"
+	"github.com/theworker02/taglock/namespace"
+	"github.com/theworker02/taglock/verify"
 )
 
 func TestGenerateIsExplicitDeterministicAndProtectsUserFiles(t *testing.T) {

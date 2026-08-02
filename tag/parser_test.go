@@ -3,7 +3,7 @@ package tag_test
 import (
 	"testing"
 
-	"github.com/magnexis/taglock/tag"
+	"github.com/theworker02/taglock/tag"
 )
 
 func TestParseRetainsDuplicateNamespaces(t *testing.T) {

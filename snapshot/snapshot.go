@@ -14,10 +14,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/engine"
-	"github.com/magnexis/taglock/internal/version"
-	"github.com/magnexis/taglock/semantics"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/engine"
+	"github.com/theworker02/taglock/internal/version"
+	"github.com/theworker02/taglock/semantics"
 )
 
 const FormatVersion = 1
@@ -90,7 +90,7 @@ func Build(result engine.Result, cfg config.Config, options BuildOptions) (Snaps
 	if err != nil {
 		return Snapshot{}, err
 	}
-	document := Snapshot{FormatVersion: FormatVersion, TagLockVersion: version.Value, GoVersion: result.GoVersion, ModulePath: result.ModulePath, ModuleVersion: result.ModuleVersion}
+	document := Snapshot{FormatVersion: FormatVersion, TagLockVersion: version.Current(), GoVersion: result.GoVersion, ModulePath: result.ModulePath, ModuleVersion: result.ModuleVersion}
 	if !options.Reproducible {
 		document.GeneratedAt = time.Now().UTC().Format(time.RFC3339)
 	}

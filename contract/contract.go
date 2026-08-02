@@ -6,8 +6,8 @@ import (
 	"go/token"
 	"go/types"
 
-	"github.com/magnexis/taglock/namespace"
-	"github.com/magnexis/taglock/tag"
+	"github.com/theworker02/taglock/namespace"
+	"github.com/theworker02/taglock/tag"
 )
 
 // StructContract is the normalized contract for one Go struct declaration.

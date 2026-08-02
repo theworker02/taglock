@@ -9,8 +9,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/magnexis/taglock/baseline"
-	"github.com/magnexis/taglock/rules"
+	"github.com/theworker02/taglock/baseline"
+	"github.com/theworker02/taglock/rules"
 )
 
 const JSONSchemaVersion = 1

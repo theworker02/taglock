@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/magnexis/taglock/contract"
+	"github.com/theworker02/taglock/contract"
 )
 
 type Registry struct {

@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/magnexis/taglock/analyzer"
-	"github.com/magnexis/taglock/internal/cli"
+	"github.com/theworker02/taglock/analyzer"
+	"github.com/theworker02/taglock/internal/cli"
 	"golang.org/x/tools/go/analysis/unitchecker"
 )
 

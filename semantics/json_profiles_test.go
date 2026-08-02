@@ -7,10 +7,10 @@ import (
 	"go/types"
 	"testing"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/contract"
-	"github.com/magnexis/taglock/namespace"
-	"github.com/magnexis/taglock/semantics"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/contract"
+	"github.com/theworker02/taglock/namespace"
+	"github.com/theworker02/taglock/semantics"
 )
 
 func build(t testing.TB, source string) *contract.StructContract {

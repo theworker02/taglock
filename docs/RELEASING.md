@@ -5,12 +5,11 @@ authorize publishing, tagging, or pushing a release.
 
 ## Before the first public release
 
-- Choose and add an explicit software license approved by the project owner.
+- Confirm the MIT license and copyright notice remain accurate.
 - Confirm module path, repository visibility, ownership, and release channels.
 - Confirm security-reporting and support links are operational.
 
-TagLock currently has no license file; do not assume a license on the project's
-behalf.
+TagLock is distributed under the MIT License in the repository root.
 
 ## Prepare
 
@@ -42,7 +41,7 @@ only exit status.
 - Create an annotated semantic-version tag only after verification passes.
 - Build release artifacts from the tagged source in controlled CI.
 - Publish checksums and release notes describing compatibility changes.
-- Test `go install github.com/magnexis/taglock/cmd/taglock@<version>` from a clean
+- Test `go install github.com/theworker02/taglock/cmd/taglock@<version>` from a clean
   environment.
 - Never publish automatically from an unreviewed pull request or developer
   workstation.
@@ -53,4 +52,3 @@ only exit status.
 - Monitor regressions and security reports.
 - Move completed changelog entries under the released version.
 - Document any urgent workaround and prepare a patch release when required.
-

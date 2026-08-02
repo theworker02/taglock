@@ -20,7 +20,7 @@ backport is impractical.
 
 ## Reporting a vulnerability
 
-Use [GitHub private vulnerability reporting](https://github.com/magnexis/taglock/security/advisories/new)
+Use [GitHub private vulnerability reporting](https://github.com/theworker02/taglock/security/advisories/new)
 when available. If it is unavailable, contact the repository owner privately.
 Do not open a public issue before coordinated disclosure.
 

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/gitdiff"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/gitdiff"
 )
 
 func TestCompareRevisionsPreservesDirtyWorktree(t *testing.T) {

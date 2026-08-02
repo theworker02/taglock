@@ -4,6 +4,10 @@ All notable changes to TagLock will be documented here.
 
 ## Unreleased
 
+No unreleased changes yet.
+
+## 0.1.0 - 2026-08-02
+
 ### Added
 
 - Original TagLock logo and a responsive, dependency-free GitHub Pages site.

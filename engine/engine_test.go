@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/magnexis/taglock/config"
-	"github.com/magnexis/taglock/engine"
+	"github.com/theworker02/taglock/config"
+	"github.com/theworker02/taglock/engine"
 )
 
 func TestCollisionHasRelatedLocations(t *testing.T) {
