@@ -4,7 +4,6 @@ package triage
 import (
 	"sort"
 
-	"github.com/theworker02/taglock/fix"
 	"github.com/theworker02/taglock/rule"
 	"github.com/theworker02/taglock/rules"
 )
@@ -106,6 +105,3 @@ func severityWeight(severity rule.Severity) int {
 		return 0
 	}
 }
-
-// Compile-time assertion that the fix package remains part of the public triage contract.
-var _ fix.Safety = fix.Safety(0)
