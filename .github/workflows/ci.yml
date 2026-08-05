@@ -16,10 +16,10 @@ jobs:
       matrix:
         go: ["1.24.x", "1.25.x", "1.26.x"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go }}
       - name: Check formatting
@@ -43,6 +43,6 @@ jobs:
         run: go test ./semantics
       - name: Upload SARIF
         if: always() && matrix.go == '1.26.x' && hashFiles('taglock.sarif') != ''
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: taglock.sarif
