@@ -2,9 +2,30 @@
 
 All notable changes to TagLock will be documented here.
 
+## 0.3.0 - 2026-08-11
+
+### Added
+
+- `triage.Compare(previous, current Summary) Delta` with score, rule, and severity deltas.
+- `Delta.IntroducesAt` and `Delta.Clean` for CI policy gates.
+- Durable triage snapshots via `triage.WriteSnapshot` and `triage.ReadSnapshot`.
+- `taglock triage` command with optional `--baseline` comparison and `--output` snapshot capture.
+
+### Compatibility
+
+- Existing analyzer, CLI, snapshot, schema, verification, and evolution APIs are unchanged.
+- The release is additive and requires no configuration migration.
+
 ## Unreleased
 
 No unreleased changes yet.
+
+## 0.2.0 - 2026-08-04
+
+### Added
+
+- `github.com/theworker02/taglock/triage` package for deterministic diagnostic summaries.
+- Weighted risk scores, grouped counts, and `Summary.FailsAt` threshold checks.
 
 ## 0.1.0 - 2026-08-02
 
