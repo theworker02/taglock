@@ -31,6 +31,7 @@ import (
 	"github.com/theworker02/taglock/schema"
 	"github.com/theworker02/taglock/semantics"
 	"github.com/theworker02/taglock/snapshot"
+	"github.com/theworker02/taglock/triage"
 	"github.com/theworker02/taglock/verify"
 )
 
@@ -77,6 +78,8 @@ func Run(arguments []string, stdout, stderr io.Writer) int {
 		return runVerify(rest, stdout, stderr)
 	case "changes":
 		return runChanges(rest, stdout, stderr)
+	case "triage":
+		return runTriage(rest, stdout, stderr)
 	case "version":
 		if len(rest) != 0 {
 			fmt.Fprintln(stderr, "taglock: version does not accept arguments")
@@ -835,6 +838,142 @@ func runChanges(arguments []string, stdout, stderr io.Writer) int {
 	return ExitOK
 }
 
+func runTriage(arguments []string, stdout, stderr io.Writer) int {
+	set := newFlagSet("triage", stderr)
+	formatValue := set.String("format", "text", "output format: text or json")
+	failOn := set.String("fail-on", "warning", "minimum severity introduced by a delta that fails")
+	baselinePath := set.String("baseline", "", "triage snapshot to compare against")
+	outputPath := set.String("output", "", "write current summary snapshot to path")
+	configPath := set.String("config", "", "configuration path")
+	if err := set.Parse(arguments); err != nil {
+		return ExitUsage
+	}
+	threshold, err := rule.ParseSeverity(*failOn)
+	if err != nil {
+		fmt.Fprintln(stderr, "taglock:", err)
+		return ExitUsage
+	}
+	if *formatValue != "text" && *formatValue != "json" {
+		fmt.Fprintf(stderr, "taglock: invalid format %q\n", *formatValue)
+		return ExitUsage
+	}
+	cfg, code := loadConfig(*configPath, stderr)
+	if code != ExitOK {
+		return code
+	}
+	result, err := engine.Analyze(context.Background(), set.Args(), cfg)
+	if err != nil {
+		fmt.Fprintln(stderr, "taglock:", err)
+		return ExitAnalysis
+	}
+	summary := triage.Summarize(result.Diagnostics)
+	if *outputPath != "" {
+		file, err := os.Create(*outputPath)
+		if err != nil {
+			fmt.Fprintln(stderr, "taglock:", err)
+			return ExitAnalysis
+		}
+		writeErr := triage.WriteSnapshot(file, summary)
+		closeErr := file.Close()
+		if writeErr != nil {
+			fmt.Fprintln(stderr, "taglock:", writeErr)
+			return ExitAnalysis
+		}
+		if closeErr != nil {
+			fmt.Fprintln(stderr, "taglock:", closeErr)
+			return ExitAnalysis
+		}
+		fmt.Fprintf(stdout, "wrote triage snapshot with %d findings to %s\n", summary.Total, *outputPath)
+	}
+	var delta triage.Delta
+	if *baselinePath != "" {
+		file, err := os.Open(*baselinePath)
+		if err != nil {
+			fmt.Fprintln(stderr, "taglock: open baseline:", err)
+			return ExitUsage
+		}
+		stored, err := triage.ReadSnapshot(file)
+		file.Close()
+		if err != nil {
+			fmt.Fprintln(stderr, "taglock:", err)
+			return ExitUsage
+		}
+		delta = triage.Compare(stored.Summary, summary)
+	}
+	if err := writeTriage(stdout, summary, delta, *baselinePath != "", threshold, *formatValue); err != nil {
+		fmt.Fprintln(stderr, "taglock: write output:", err)
+		return ExitAnalysis
+	}
+	if *baselinePath != "" && delta.IntroducesAt(threshold) {
+		return ExitViolations
+	}
+	return ExitOK
+}
+
+func writeTriage(writer io.Writer, summary triage.Summary, delta triage.Delta, compared bool, threshold rule.Severity, format string) error {
+	if format == "json" {
+		payload := struct {
+			Summary triage.Summary `json:"summary"`
+			Delta   *triage.Delta  `json:"delta,omitempty"`
+		}{Summary: summary}
+		if compared {
+			payload.Delta = &delta
+		}
+		encoder := json.NewEncoder(writer)
+		encoder.SetIndent("", "  ")
+		return encoder.Encode(payload)
+	}
+
+	fmt.Fprintf(writer, "TagLock triage — %d findings, score %d\n", summary.Total, summary.Score)
+	if summary.Total > 0 {
+		fmt.Fprintf(writer, "By severity: info=%d warning=%d error=%d\n",
+			summary.BySeverity["info"], summary.BySeverity["warning"], summary.BySeverity["error"])
+		top := summary.TopRules(5)
+		if len(top) > 0 {
+			fmt.Fprintln(writer, "Top rules:")
+			for _, item := range top {
+				fmt.Fprintf(writer, "  %s (%d)\n", item.Rule, item.Count)
+			}
+		}
+	}
+	if !compared {
+		return nil
+	}
+	status := "PASS"
+	if delta.IntroducesAt(threshold) {
+		status = "BLOCK"
+	}
+	fmt.Fprintf(writer, "\nDelta %s — score %+d\n", status, delta.ScoreDelta)
+	if delta.Clean() {
+		fmt.Fprintln(writer, "No triage changes since the stored snapshot.")
+		return nil
+	}
+	if len(delta.AddedRules) > 0 {
+		fmt.Fprintf(writer, "Added rules (%d):\n", len(delta.AddedRules))
+		for _, item := range delta.AddedRules {
+			fmt.Fprintf(writer, "  %s (%d)\n", item.Rule, item.Count)
+		}
+	}
+	if len(delta.ResolvedRules) > 0 {
+		fmt.Fprintf(writer, "Resolved rules (%d):\n", len(delta.ResolvedRules))
+		for _, item := range delta.ResolvedRules {
+			fmt.Fprintf(writer, "  %s (%d)\n", item.Rule, item.Count)
+		}
+	}
+	if len(delta.SeverityDelta) > 0 {
+		fmt.Fprintln(writer, "Severity delta:")
+		keys := make([]string, 0, len(delta.SeverityDelta))
+		for key := range delta.SeverityDelta {
+			keys = append(keys, key)
+		}
+		sort.Strings(keys)
+		for _, key := range keys {
+			fmt.Fprintf(writer, "  %s %+d\n", key, delta.SeverityDelta[key])
+		}
+	}
+	return nil
+}
+
 func readSnapshot(filename string) (snapshot.Snapshot, error) {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -911,7 +1050,7 @@ func newFlagSet(name string, stderr io.Writer) *flag.FlagSet {
 }
 func writeUsage(writer io.Writer) {
 	fmt.Fprintln(writer, "TagLock — compile-time confidence for Go's runtime metadata")
-	fmt.Fprintln(writer, "\nUsage:\n  taglock check [flags] [packages]\n  taglock fix [flags] [packages]\n  taglock snapshot [flags] [packages]\n  taglock compare <base.json> <head.json>\n  taglock compare --base REV --head REV [packages]\n  taglock migrate json-v2 [packages]\n  taglock manifest <package|module> [packages]\n  taglock schema [check] [packages]\n  taglock verify <generate|run> [packages]\n  taglock changes validate\n  taglock rules\n  taglock explain <rule-id>\n  taglock init\n  taglock config <validate|print>\n  taglock baseline <create|update> [packages]\n  taglock version")
+	fmt.Fprintln(writer, "\nUsage:\n  taglock check [flags] [packages]\n  taglock fix [flags] [packages]\n  taglock snapshot [flags] [packages]\n  taglock compare <base.json> <head.json>\n  taglock compare --base REV --head REV [packages]\n  taglock migrate json-v2 [packages]\n  taglock manifest <package|module> [packages]\n  taglock schema [check] [packages]\n  taglock verify <generate|run> [packages]\n  taglock changes validate\n  taglock triage [flags] [packages]\n  taglock rules\n  taglock explain <rule-id>\n  taglock init\n  taglock config <validate|print>\n  taglock baseline <create|update> [packages]\n  taglock version")
 }
 
 // MarshalDiagnostics is retained for small CLI integration helpers.
