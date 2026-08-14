@@ -2,6 +2,23 @@
 
 All notable changes to TagLock will be documented here.
 
+## Unreleased
+
+No unreleased changes yet.
+
+## 0.4.0 - 2026-08-14
+
+### Added
+
+- `taglock check --format github` emits GitHub Actions workflow commands (`::error`, `::warning`, `::notice`) so pull-request files are annotated without a SARIF upload.
+- `output.GitHub` for embedders that want the same annotation stream.
+
+### Compatibility
+
+- Existing analyzer, CLI, snapshot, schema, verification, and evolution APIs are unchanged.
+- `text`, `json`, and `sarif` formats remain the default and previous options.
+- The release is additive and requires no configuration migration.
+
 ## 0.3.0 - 2026-08-11
 
 ### Added

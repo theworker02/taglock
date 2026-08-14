@@ -102,7 +102,7 @@ func Run(arguments []string, stdout, stderr io.Writer) int {
 
 func runCheck(arguments []string, stdout, stderr io.Writer) int {
 	set := newFlagSet("check", stderr)
-	format := set.String("format", "text", "output format: text, json, or sarif")
+	format := set.String("format", "text", "output format: text, json, sarif, or github")
 	failOn := set.String("fail-on", "warning", "minimum severity that fails")
 	configPath := set.String("config", "", "configuration path")
 	baselinePath := set.String("baseline", "", "baseline file")
@@ -115,7 +115,7 @@ func runCheck(arguments []string, stdout, stderr io.Writer) int {
 		fmt.Fprintln(stderr, "taglock:", err)
 		return ExitUsage
 	}
-	if *format != "text" && *format != "json" && *format != "sarif" {
+	if *format != "text" && *format != "json" && *format != "sarif" && *format != "github" {
 		fmt.Fprintf(stderr, "taglock: invalid format %q\n", *format)
 		return ExitUsage
 	}
@@ -170,6 +170,8 @@ func runCheck(arguments []string, stdout, stderr io.Writer) int {
 		err = output.JSON(stdout, result.FileSet, diagnostics)
 	case "sarif":
 		err = output.SARIF(stdout, result.FileSet, diagnostics)
+	case "github":
+		err = output.GitHub(stdout, result.FileSet, diagnostics)
 	}
 	if err != nil {
 		fmt.Fprintln(stderr, "taglock: write output:", err)

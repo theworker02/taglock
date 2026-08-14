@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/theworker02/taglock/baseline"
+	"github.com/theworker02/taglock/rule"
 	"github.com/theworker02/taglock/rules"
 )
 
@@ -83,6 +84,47 @@ func JSON(writer io.Writer, fileSet *token.FileSet, diagnostics []rules.Diagnost
 	encoder := json.NewEncoder(writer)
 	encoder.SetIndent("", "  ")
 	return encoder.Encode(JSONDocument{SchemaVersion: JSONSchemaVersion, Findings: Flatten(fileSet, diagnostics)})
+}
+
+// GitHub writes GitHub Actions workflow commands so `check --format github`
+// annotates pull-request files without a SARIF upload step.
+func GitHub(writer io.Writer, fileSet *token.FileSet, diagnostics []rules.Diagnostic) error {
+	for _, diagnostic := range diagnostics {
+		position := fileSet.Position(diagnostic.Pos)
+		command := githubCommand(diagnostic.Severity)
+		title := githubEscapeProperty(diagnostic.Rule.ID)
+		file := githubEscapeProperty(position.Filename)
+		message := githubEscapeMessage(diagnostic.Rule.ID + " " + diagnostic.Message)
+		if _, err := fmt.Fprintf(writer, "::%s file=%s,line=%d,col=%d,title=%s::%s\n", command, file, position.Line, position.Column, title, message); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func githubCommand(severity rule.Severity) string {
+	switch severity {
+	case rule.SeverityError:
+		return "error"
+	case rule.SeverityWarning:
+		return "warning"
+	default:
+		return "notice"
+	}
+}
+
+func githubEscapeMessage(value string) string {
+	value = strings.ReplaceAll(value, "%", "%25")
+	value = strings.ReplaceAll(value, "\r", "%0D")
+	value = strings.ReplaceAll(value, "\n", "%0A")
+	return value
+}
+
+func githubEscapeProperty(value string) string {
+	value = githubEscapeMessage(value)
+	value = strings.ReplaceAll(value, ":", "%3A")
+	value = strings.ReplaceAll(value, ",", "%2C")
+	return value
 }
 
 type sarifLog struct {

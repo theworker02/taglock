@@ -46,3 +46,17 @@ func TestSARIFContainsRuleAndLocation(t *testing.T) {
 		}
 	}
 }
+
+func TestGitHubWorkflowCommands(t *testing.T) {
+	set, diagnostics := testDiagnostic()
+	var buffer bytes.Buffer
+	if err := output.GitHub(&buffer, set, diagnostics); err != nil {
+		t.Fatal(err)
+	}
+	value := buffer.String()
+	for _, expected := range []string{"::error file=model.go,line=2,col=", "title=TAG104::", "TAG104 duplicate json name"} {
+		if !strings.Contains(value, expected) {
+			t.Fatalf("missing %s in %s", expected, value)
+		}
+	}
+}

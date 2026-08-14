@@ -60,6 +60,17 @@ func TestRulesAndExplainShareCatalog(t *testing.T) {
 	}
 }
 
+func TestGitHubCheckFormat(t *testing.T) {
+	var out, errOut bytes.Buffer
+	code := cli.Run([]string{"check", "--format", "github", "./testdata/violation"}, &out, &errOut)
+	if code != cli.ExitViolations {
+		t.Fatalf("check github code=%d out=%s err=%s", code, out.String(), errOut.String())
+	}
+	if !strings.Contains(out.String(), "::error ") || !strings.Contains(out.String(), "title=") {
+		t.Fatalf("expected GitHub workflow commands, got %s", out.String())
+	}
+}
+
 func TestVersionCommand(t *testing.T) {
 	var out, errOut bytes.Buffer
 	if code := cli.Run([]string{"version"}, &out, &errOut); code != cli.ExitOK {
