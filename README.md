@@ -1,17 +1,17 @@
-<p align="center">
+﻿<p align="center">
   <img src="docs/assets/taglock-logo.png" alt="TagLock logo: a padlock containing code brackets" width="180">
 </p>
 
 # TagLock
 
 <p align="center">
-  <a href="https://theworker02.github.io/taglock/">Website</a> ·
-  <a href="docs/RULES.md">Rules</a> ·
-  <a href="CONTRIBUTING.md">Contributing</a> ·
+  <a href="https://theworker02.github.io/taglock/">Website</a> Â·
+  <a href="docs/RULES.md">Rules</a> Â·
+  <a href="CONTRIBUTING.md">Contributing</a> Â·
   <a href="SECURITY.md">Security</a>
 </p>
 
-**Compile-time confidence for Go's runtime metadata — and compatibility
+**Compile-time confidence for Go's runtime metadata â€” and compatibility
 intelligence for the contracts that metadata creates.**
 
 TagLock statically analyzes Go struct tags as one serialized contract. It finds
@@ -135,7 +135,7 @@ taglock migrate json-v2 ./...
 taglock migrate json-v2 --format json ./...
 ```
 
-Migration findings use `JSONMIG001`–`JSONMIG010` for option, field resolution,
+Migration findings use `JSONMIG001`â€“`JSONMIG010` for option, field resolution,
 embedding, omission, name matching, custom method, ambiguity, and explicit
 compatibility differences. On toolchains where `encoding/json/v2` is present
 but `GOEXPERIMENT=jsonv2` is inactive, TagLock can model the known profile but
@@ -248,11 +248,5 @@ go test -bench . ./...
 
 ## License
 
-TagLock is available under the [MIT License](LICENSE).
+**Source-available proprietary** — evaluation under [LICENSE](./LICENSE); commercial / production use via [COMMERCIAL.md](./COMMERCIAL.md). See [LICENSE_TRANSITION_NOTICE.md](./LICENSE_TRANSITION_NOTICE.md) and [NOTICE](./NOTICE).
 
-Known limitations are documented in [SECURITY.md](SECURITY.md) and
-[docs/SNAPSHOT_FORMAT.md](docs/SNAPSHOT_FORMAT.md). Reproducible performance
-measurements are documented in [docs/BENCHMARKS.md](docs/BENCHMARKS.md). JSON v2
-remains experimental and arbitrary custom serializer behavior cannot be proven
-statically; CI runs the version-gated differential suite with
-`GOEXPERIMENT=jsonv2` on Go 1.26.
