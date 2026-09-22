@@ -5,13 +5,13 @@
 # TagLock
 
 <p align="center">
-  <a href="https://theworker02.github.io/taglock/">Website</a> Â·
-  <a href="docs/RULES.md">Rules</a> Â·
-  <a href="CONTRIBUTING.md">Contributing</a> Â·
+  <a href="https://theworker02.github.io/taglock/">Website</a> Ã‚Â·
+  <a href="docs/RULES.md">Rules</a> Ã‚Â·
+  <a href="CONTRIBUTING.md">Contributing</a> Ã‚Â·
   <a href="SECURITY.md">Security</a>
 </p>
 
-**Compile-time confidence for Go's runtime metadata â€” and compatibility
+**Compile-time confidence for Go's runtime metadata Ã¢â‚¬â€ and compatibility
 intelligence for the contracts that metadata creates.**
 
 TagLock statically analyzes Go struct tags as one serialized contract. It finds
@@ -135,7 +135,7 @@ taglock migrate json-v2 ./...
 taglock migrate json-v2 --format json ./...
 ```
 
-Migration findings use `JSONMIG001`â€“`JSONMIG010` for option, field resolution,
+Migration findings use `JSONMIG001`Ã¢â‚¬â€œ`JSONMIG010` for option, field resolution,
 embedding, omission, name matching, custom method, ambiguity, and explicit
 compatibility differences. On toolchains where `encoding/json/v2` is present
 but `GOEXPERIMENT=jsonv2` is inactive, TagLock can model the known profile but
@@ -248,7 +248,7 @@ go test -bench . ./...
 
 ## License
 
-**Source-available proprietary** — evaluation under [LICENSE](./LICENSE); commercial / production use via [COMMERCIAL.md](./COMMERCIAL.md). See [LICENSE_TRANSITION_NOTICE.md](./LICENSE_TRANSITION_NOTICE.md) and [NOTICE](./NOTICE).
+**Source-available proprietary** â€” evaluation under [LICENSE](./LICENSE); commercial / production use via [COMMERCIAL.md](./COMMERCIAL.md). See [LICENSE_TRANSITION_NOTICE.md](./LICENSE_TRANSITION_NOTICE.md) and [NOTICE](./NOTICE).
 
 
 ---
@@ -256,3 +256,7 @@ go test -bench . ./...
 ## License & acquisition
 
 This project is **proprietary**. Production use, redistribution, and commercial deployment require a written commercial license or completed acquisition. See [LICENSE](./LICENSE) and [ACQUISITION.md](./ACQUISITION.md). Contact [@theworker02](https://github.com/theworker02).
+
+## Acquisition diligence
+
+Buyer-facing diligence materials live in [docs/acquisition/](./docs/acquisition/). Commercial licensing contact path: [COMMERCIAL.md](./COMMERCIAL.md).
