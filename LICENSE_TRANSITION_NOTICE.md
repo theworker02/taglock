@@ -1,4 +1,4 @@
-﻿# License Transition & Enforcement Notice
+# License Transition & Enforcement Notice
 
 **Project:** taglock  
 **Copyright holder:** theworker02 (https://github.com/theworker02)  
