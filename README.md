@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="docs/logo.svg" alt="taglock official logo" width="128" height="128">
+</p>
+
+<p align="center">
   <img src="docs/assets/taglock-logo.png" alt="TagLock logo: a padlock containing code brackets" width="180">
 </p>
 
